@@ -1,0 +1,17 @@
+# Copiere fisiere de config IPSEC_AH
+docker cp alice/ipsec_ah.conf alice:/etc/ipsec.conf
+docker cp bob/ipsec_ah.conf bob:/etc/ipsec.conf
+docker cp ipsec.secrets alice:/etc/ipsec.secrets
+docker cp ipsec.secrets bob:/etc/ipsec.secrets
+
+# Copiere fisiere de config IPSEC_ESP
+docker cp alice/ipsec_esp.conf alice:/etc/ipsec.conf
+docker cp bob/ipsec_esp.conf bob:/etc/ipsec.conf
+docker cp ipsec.secrets alice:/etc/ipsec.secrets
+docker cp ipsec.secrets bob:/etc/ipsec.secrets
+
+# Ascultare trafic
+sudo tcpdump -i NUME_INTERFATA -vv -s0 -X -c 1000 -w capture.pcap
+
+# Trimitere cerere HTTP cu username si parola 
+curl -X POST -d'{"username": "bob", "password": "secret" }' -H "Content-Type: application/json" http://ALICE_IP

@@ -1,0 +1,20 @@
+services:
+  alice:
+    build:
+      context: ./alice
+      dockerfile: Dockerfile
+    container_name: alice
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    ports:
+      - 8080:80
+
+  bob:
+    build:
+      context: ./bob
+      dockerfile: Dockerfile
+    container_name: bob
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
